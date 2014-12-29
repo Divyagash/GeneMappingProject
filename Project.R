@@ -1,5 +1,5 @@
 #Additive model(Default in plink)
-A = read.table("plink.mds",header = TRUE) # Read the mds file from plink output
+A = read.table("Users/Divy/Downloads/plink.mds",header = TRUE) # Read the mds file from plink output
 plot(A$C1,A$C2)
 CasesPC1<-c(A$C1[1:846])
 CasesPC2<-c(A$C2[1:846])
