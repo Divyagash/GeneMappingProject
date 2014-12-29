@@ -1,5 +1,5 @@
 #Additive model(Default in plink)
-A = read.table("Users/Divy/Downloads/plink.mds",header = TRUE) # Read the mds file from plink output
+A = read.table("plink.mds",header = TRUE) # Read the mds file from plink output
 plot(A$C1,A$C2)
 CasesPC1<-c(A$C1[1:846])
 CasesPC2<-c(A$C2[1:846])
@@ -26,3 +26,17 @@ nrows = nrow(OrigGenData)
 
 
 GenDat<-data.frame(chr = CHR, pos = BP, p = P)
+
+# Adjusted for the first PC
+AdjGenData = read.table("plink.assoc.logistic",header = TRUE)
+op<-(ylim=c(0,10))
+manhattan(P,ylim=c(0,10))
+qq(P$P)
+OrigGenData <-B
+NewAdj<-AdjGenData[AdjGenData$TEST == "C1" & AdjGenData$P,]
+NewAdj2<-NewAdj[complete.cases(NewAdj),]
+op<-(ylim=c(0,10))
+manhattan(NewAdj2,ylim=c(0,10),main="Manhattan plot after adjusting for the first PC")
+qq(NewAdj2$P)
+
+
